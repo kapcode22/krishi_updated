@@ -1,1 +1,2 @@
-# krishi_updated
+# krishiTech-frontened
+helping to the farmer using technology
