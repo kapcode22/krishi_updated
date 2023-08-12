@@ -2,6 +2,7 @@ import React from "react";
 import firstpro2 from "../img/firstpro2.jpg"
 import tractor from "../img/tractor.jpg"
 import Navbar from "./Navbar";
+import "../components/About.css"
 
 
 const About = () => {

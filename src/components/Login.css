@@ -10,20 +10,7 @@
   opacity: 0.7;
 }
 
-@media only screen and (max-width:620px){
-  .lcard{
-    width: 90vw;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
 
-
-@media only screen and (max-height:670px){
-  .lcard{
-height: 60px;
-  }
-}
 
 .title{
   color: white;
@@ -66,7 +53,6 @@ height: 60px;
   font-size: 1rem;
   font-family: inherit;
   cursor: pointer;
-  /* background-color: blanchedalmond; */
   color: rgb(0, 0, 0);
   border: 6px solid transparent ;
   
@@ -122,5 +108,18 @@ cursor: pointer ;
   }
 } 
 
+@media only screen and (max-width:620px){
+  .lcard{
+    width: 90vw;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
 
-/* style={{width: "25rem",paddingBottom: "5px",color: "#52b3d9", opacity:"" , borderRadius:"2rem", }} */
+
+@media only screen and (max-height:670px){
+  .lcard{
+height: 60px;
+  }
+}
+
