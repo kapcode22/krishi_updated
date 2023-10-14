@@ -9,13 +9,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 const Signup = () => {
-  //const navigate = useHistory();
   
-  //  useEffect(()={
-  //   if(localStorage.getItem('user-info')){
-  //     navigate.push('./features');
-  //   }
-  //  },[])
   
   const [data, setData] = useState({
     firstname: "",
