@@ -1,60 +1,33 @@
-//import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import React, { useEffect, useState } from "react";
+import React, { useState } from 'react';
 import Navbar from "./Navbar";
 
- import "./wager.css"
-const Wager = () => {
+export const Wager = ({ addJob }) => {
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
     email: "",
+    contactNo: "",
     address: "",
     District: "",
     state: "",
-    NumberofWager: "",
     work: "",
+    Wagers: "",
     pincode: "",
-    contactNo: "",
   });
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setData((preve) => {
-      return {
-        ...preve,
-        [name]: value,
-      };
-    });
-  };            
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  console.log(process.env.REACT_APP_SERVER_DOMIN);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {
-      firstname,
-      lastname,
-      email,
-      address,
-      District,
-      state,
-      NumberofWager,
-      work,
-      pincode,
-      contactNo
-    } = data;
-    console.log(
-      firstname,
-      lastname,
-      email,
-      address,
-      District,
-      state,
-      NumberofWager,
-      work,
-      pincode,
-      contactNo,
-    );
-    await fetch("http://localhost:8080/wagers", {
+    const { firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work } = data;
+    console.log(firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work);
+    fetch("http://localhost:8080/wagers", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -66,69 +39,57 @@ const Wager = () => {
         firstname,
         lastname,
         email,
+        contactNo,
         address,
         District,
         state,
-        NumberofWager,
-        work,
         pincode,
-        contactNo,
+        Wagers,
+        work,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "request created successfully");
-      });
+        console.log(data, "userRegister");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <>
       <Navbar />
-      <div className=" d-flex  justify-content-center " >
-        <div >
-          <h3 className="title"><u>Enter Your Valid Details</u></h3>
-          <p className="subtitle"><b><i>*should be filled by only one member of the group</i></b> </p>
-          <hr></hr>
-          <form className="mb-4">
-
-          <div>
-              <p><b>Enter your personal details</b></p>
-          </div>
-
-
-            <div className='inputs_container' style={{borderRadius:"10rem"}}>
-              <input type={"text"} id="firstname" name="firstname" value={data.firstname} onChange={handleOnChange} placeholder="Enter Your first name" />
+      <div className="d-flex align-items-center justify-content-center" style={{ color: '#34495E ', paddingTop: '5rem', }}>
+        <div className="card auth-card input-field align-items-center" style={{ width: '50rem', paddingBottom: '10px', color: '#212F3D', backgroundColor: '#979A9A' }}>
+          <h2>Enter Your Valid Details</h2>
+          <p>*should be filled by only one member of the group</p>
+          <form className="row g-3">
+            <div className="col-md-6">
+              <label htmlFor="firstname" className="form-label">First Name</label>
+              <input type="text" value={data.firstname} onChange={handleOnChange} className="form-control" placeholder="First Name" id="firstname" name="firstname" />
             </div>
-
-            <div className='inputs_container '>
-              <input  type={"text"} id="lastname" name="lastname" value={data.lastname} onChange={handleOnChange} placeholder="Enter Your last name" />
+            <div className="col-md-6">
+              <label htmlFor="lastname" className="form-label">Last Name</label>
+              <input type="text" value={data.lastname} onChange={handleOnChange} className="form-control" placeholder="Last name" id="lastname" name="lastname" />
             </div>
-
-            <div className='inputs_container '>
-              <input type={"text"} id="contactNo" name="contactNo" value={data.contactNo} onChange={handleOnChange} placeholder="Enter Your Contact Number"/>
+            <div className="col-md-6">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input type="email" value={data.email} onChange={handleOnChange} className="form-control" placeholder="Email" id="email" name="email" />
             </div>
-
-            <div className='inputs_container '>
-              <input type={"email"} id="email" name="email" value={data.email} onChange={handleOnChange} placeholder="Enter Your Email" />
+            <div className="col-md-6">
+              <label htmlFor="contactNo" className="form-label">Contact Number</label>
+              <input type="Number" value={data.contactNo} onChange={handleOnChange} className="form-control" placeholder="Contact Number" id="contactNo" name="contactNo" />
             </div>
-            
-            <hr></hr>
-            <div className='inputs_container '>
-              <p><b>Enter your Address details</b></p>
+            <div className="col-12">
+              <label htmlFor="address" className="form-label">Address</label>
+              <input type="text" value={data.address} onChange={handleOnChange} className="form-control" id="address" placeholder="Residential address" name="address" />
             </div>
-
-            <div className='inputs_container ' style={{color:"#87AFC7"}}>
-              <input type={"text"} id="address" name="address" value={data.address} onChange={handleOnChange}  placeholder="Enter Your address" />
+            <div className="col-md-4">
+              <label htmlFor="District" className="form-label">District</label>
+              <input type="text" value={data.District} onChange={handleOnChange} className="form-control" placeholder="Your District" id="District" name="District" />
             </div>
-           
-
-            <div className='inputs_container'>
-              <input type={"text"} id="District"  name="District" value={data.District} onChange={handleOnChange} placeholder="Your District" />
-            </div>
-
-            <div >
-              <label style={{color:"black"}}>State</label>
-              <select id="state" value={data.state} name="state" onChange={handleOnChange}  className='inputs_container dropdown-item'>
+            <div className="col-md-4">
+              <label htmlFor="state" className="form-label">State</label>
+              <select id="state" value={data.state} onChange={handleOnChange} className="form-select" name="state">
                 <option selected>Choose...</option>
                 <option>UttarPradesh</option>
                 <option>MadhyaPradesh</option>
@@ -154,27 +115,17 @@ const Wager = () => {
                 <option>Tamilnadu</option>
               </select>
             </div>
-
-            <div className='inputs_container'>
-              <input value={data.pincode} type={"text"} onChange={handleOnChange} name="pincode" placeholder="Enter Valid Six-Digit code" id="pincode" />
+            <div className="col-md-4">
+              <label htmlFor="inputZip" className="form-label">Pincode</label>
+              <input type="text" value={data.pincode} className="form-control" placeholder="Enter Valid Six-Digit code" id="inputZip" onChange={handleOnChange} name="pincode" />
             </div>
-
-            <hr></hr>
-
-            <div className='inputs_container'>
-              <b>Additional details</b>
+            <div className="col-md-4">
+              <label htmlFor="Wagers" className="form-label">Number of member in your team</label>
+              <input type="text" value={data.Wagers} onChange={handleOnChange} className="form-control" placeholder="wager" id="Wagers" name="Wagers" />
             </div>
-
-            <div className='inputs_container'> 
-              <input type="text" id="NumberofWager" placeholder="Number of wagers in your group" name="NumberofWager" value={data.NumberofWager} onChange={handleOnChange} />
-
-              {/* <button type="button"  className="btn btn-primary mx-4">+</button>
-   <button type="button"  className="btn btn-primary mx-4">-</button> */}
-            </div>
-
-            <div >
-              <label style={{color:"black"}}>Enter work</label>
-              <select id="work" name="work" value={data.work} onChange={handleOnChange} className='inputs_container dropdown-item'>
+            <div className="col-md-4">
+              <label htmlFor="work" className="form-label">For Which Purpose</label>
+              <select id="work" value={data.work} onChange={handleOnChange} className="form-select" name="work">
                 <option selected>Choose...</option>
                 <option>Soil/land preparation</option>
                 <option>Sowing</option>
@@ -186,13 +137,19 @@ const Wager = () => {
                 <option>Crop Storage</option>
               </select>
             </div>
-      <hr></hr>
-            <button type="button" className="btn btn-success pt-2" onClick={handleSubmit} >Add JOB </button>
+            <div className="col-12">
+              <button type="button" onClick={handleSubmit} className="btn btn-primary">Add Job</button>
+            </div>
           </form>
         </div>
       </div>
-    </>
-  );
-};
 
-export default Wager;
+    </>
+   
+  )
+}
+
+export default Wager
+
+
+

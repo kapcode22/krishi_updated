@@ -1,11 +1,7 @@
-
-
-import React, { useEffect, useState } from 'react'
-//import { toast } from "react-hot-toast";
-import { BiShow, BiHide } from "react-icons/bi";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
-const Agrimachinery = () => {
+
+export const Agrimachinery = ({ addAgri }) => {
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -15,31 +11,28 @@ const Agrimachinery = () => {
     District: "",
     state: "",
     pincode: "",
-    machine: "",
+    machine:"",
   });
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setData((preve) => {
-      return {
-        ...preve,
-        [name]: value,
-      };
-    });
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  console.log(process.env.REACT_APP_SERVER_DOMIN)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstname, lastname, email, contactNo, address, District, state, pincode, machine } = data;
+    const { firstname, lastname, email, contactNo, address, District, state, pincode,machine } = data;
     console.log(firstname, lastname, email, contactNo, address, District, state, pincode, machine);
-    await fetch("http://localhost:8080/agris", {
+    fetch("http://localhost:8080/agris", {
       method: "POST",
       crossDomain: true,
       headers: {
         "content-type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         firstname,
@@ -51,54 +44,61 @@ const Agrimachinery = () => {
         state,
         pincode,
         machine,
-      })
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
+        window.location.href('/mach')
       })
+      .catch((err) => console.log(err));
   };
-
   return (
     <>
-      <Navbar />
-      <div className="d-flex justify-content-center">
-        <div>
-
-        <h3 className="title"><u>Enter Your Valid Details</u></h3>
-        <hr></hr>
-          <form>
-
-          <div style={{color:"orange"}}>
-              <p><b>Enter your personal details</b></p>
-          </div>
-
-            <div className='inputs_container' style={{borderRadius:"5rem"}}>
-              <input type={"text"} id="firstname" name="firstname" value={data.firstname} onChange={handleOnChange} placeholder='Enter Your first name' />
+    <Navbar/>
+      <div
+        className=" d-flex align-items-center justify-content-center "
+        style={{ color: "#34495E ", paddingTop: "5rem" }}
+      >
+        <div
+          className=" card auth-card input-field align-items-center "
+          style={{
+            width: "50rem",
+            paddingBottom: "10px",
+            color: "#212F3D",
+            backgroundColor: "#979A9A",
+          }}
+        >
+          <h2>Apply for Agri AgriMachinery</h2>
+          <p> *filled only if you have AgriMachinery</p>
+          <form className="row g-3">
+            <div className="col-md-6">
+              <label htmlFor="firstname" className="form-label">First Name</label>
+              <input type="text" value={data.firstname} onChange={handleOnChange} className="form-control" placeholder="First Name" id="firstname" name="firstname" />
             </div>
-
-            <div className='inputs_container '>
-              <input type={"text"} id="lastname" name="lastname" value={data.lastname} onChange={handleOnChange} placeholder='Enter Your last name'  />
+            <div className="col-md-6">
+              <label htmlFor="lastname" className="form-label">Last Name</label>
+              <input type="text" value={data.lastname} onChange={handleOnChange} className="form-control" placeholder="Last name" id="lastname" name="lastname" />
             </div>
-
-            <div className='inputs_container '>
-              <input type={"email"} id="email" name="email" value={data.email} onChange={handleOnChange} placeholder='Enter Your Email'/>
+            <div className="col-md-6">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input type="email" value={data.email} onChange={handleOnChange} className="form-control" placeholder="Email" id="email" name="email" />
             </div>
-
-            <div className='inputs_container '>
-              <input type={"text"} id="contactNo" name="contactNo" value={data.contactNo} onChange={handleOnChange} placeholder="Enter Your Contact Number" />
+            <div className="col-md-6">
+              <label htmlFor="contactNo" className="form-label">Contact Number</label>
+              <input type="Number" value={data.contactNo} onChange={handleOnChange} className="form-control" placeholder="Contact Number" id="contactNo" name="contactNo" />
             </div>
-             <hr></hr>
-            <div className='inputs_container '>
-              <input type={"text"} id="address" name="address" value={data.address} onChange={handleOnChange} placeholder="Address" />
+            <div className="col-12">
+              <label htmlFor="address" className="form-label">Address</label>
+              <input type="text" value={data.address} onChange={handleOnChange} className="form-control" id="address" placeholder="Residential address" name="address" />
             </div>
-
-            <div className='inputs_container '>
-              <input type={"text"} id="District" name="District" value={data.District} onChange={handleOnChange} placeholder="Your District"  />
+            <div className="col-md-4">
+              <label htmlFor="District" className="form-label">District</label>
+              <input type="text" value={data.District} onChange={handleOnChange} className="form-control" placeholder="Your District" id="District" name="District" />
             </div>
-
-            <div>
-              <select id="state" value={data.state} name="state" onChange={handleOnChange}  className='inputs_container dropdown-item'>
+            <div className="col-md-4">
+              <label htmlFor="state" className="form-label">State</label>
+              <select id="state" value={data.state} onChange={handleOnChange} className="form-select" name="state">
                 <option selected>Choose...</option>
                 <option>UttarPradesh</option>
                 <option>MadhyaPradesh</option>
@@ -124,18 +124,16 @@ const Agrimachinery = () => {
                 <option>Tamilnadu</option>
               </select>
             </div>
-
-            <div  className='inputs_container'>
-              <input type={"text"} id="pincode" name="pincode" value={data.pincode} onChange={handleOnChange} placeholder="Enter Valid Six-Digit code" />
-            </div>
-            <hr></hr>
-
-            <div>
-              <b>Additonal  details</b>
+            <div className="col-md-4">
+              <label htmlFor="inputZip" className="form-label">Pincode</label>
+              <input type="text" value={data.pincode} className="form-control" placeholder="Enter Valid Six-Digit code" id="inputZip" onChange={handleOnChange} name="pincode" />
             </div>
 
-            <div >
-              <select id="machine" value={data.machine} name="machine" onChange={handleOnChange} className='inputs_container dropdown-item'>
+            <div className="col-md-4">
+              <label htmlFor="machine" className="form-label">
+                Machines you Have for
+              </label>
+              <select id="machine" name="machine" value={data.machine} onChange={handleOnChange}  className="form-select">
                 <option selected>Choose...</option>
                 <option>Soil/land preparation</option>
                 <option>Sowing</option>
@@ -147,20 +145,15 @@ const Agrimachinery = () => {
                 <option>Crop Storage</option>
               </select>
             </div>
-              <hr></hr>
-            <button type="button" className="btn btn-success pt-2" onClick={handleSubmit}>Sign Up</button>
+
+            <div className="col-12">
+              <button type="button" onClick={handleSubmit} className="btn btn-primary"> Apply  </button>
+            </div>
           </form>
-          <p className="text-left text-sm mt-2">
-            Already have account ?{" "}
-            <Link to={"/login"} className="text-red-500 underline">
-              Login
-            </Link>
-          </p>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Agrimachinery;
-

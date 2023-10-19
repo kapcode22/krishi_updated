@@ -13,7 +13,7 @@ export const JobItem = ({ job, onDelete }) => {
           className="btn btn-sm btn-success" onClick={() => { onDelete(job)}}>Accept
         </button>
       </div>
-      <hr/>
+      <hr />
     </>
   );
 };

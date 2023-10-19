@@ -12,9 +12,9 @@ import Navbar from "./Navbar";
 export const Home = () => {
   return (
     <>
-      <Navbar />
-      <div >
-        <video controls autoPlay loop muted style={{ width: '100%', height: '100%', position: 'absolute', left: '0', objectFit: 'cover', objectPosition: 'center' ,zIndex:'-1'}}>
+    <Navbar/>
+      <div>
+        <video controls autoPlay loop muted style={{ width: '100%', height: '100%', position: 'absolute', left: '0', objectFit: 'cover', objectPosition: 'center' }}>
           <source src={video} type="video/mp4" />
         </video>
         <div className="text dynamic-text" style={{ height: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -33,10 +33,10 @@ export const Home = () => {
         </div>
 
         <div className="homepageCard">
-          <div class=" text-center homepageCard">
+          <div class="container text-center homepageCard">
             <div class="row">
-              <div class="homePageCardcol col homePageCardcol1">
-                <div className=" homePageCardBody " >
+              <div class="homePageCardcol col">
+                <div className="card homePageCardBody eitherSideCard " >
                   <img src={harvesting} className="card-img-top" alt="..." />
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
@@ -45,8 +45,8 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-              <div class="homePageCardcol col homePageCardcol2">
-                <div className=" homePageCardBody " >
+              <div class="homePageCardcol col">
+                <div className="card homePageCardBody eitherSideCard " >
                   <img src={firstpro1} className="card-img-top" alt="..." />
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
@@ -55,8 +55,8 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-              <div class="homePageCardcol col homePageCardcol1">
-                <div className="homePageCardBody " >
+              <div class="homePageCardcol col">
+                <div className="card homePageCardBody eitherSideCard " >
                   <img src={tractor} className="card-img-top" alt="..." />
                   <div className="card-body">
                     <h5 className="card-title">Card title</h5>
