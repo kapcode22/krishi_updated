@@ -1,140 +1,261 @@
+// import React, { useEffect, useState } from 'react'
+// import { BiShow, BiHide } from "react-icons/bi";
+// import {Link,  useHistory} from "react-router-dom";
+// //import { toast } from "react-hot-toast";
+// import Navbar from "./Navbar";
+
+// const Login = () => {
+//   const navigate = useHistory();
+ 
+//   const [showPassword, setShowPassword] = useState(false);
+//   const [data, setData] = useState({
+//     email: "",
+//     password: "",
+//   });
+
+//   const handleOnChange = (e) => {
+//     const { name, value } = e.target;
+//     setData((preve) => {
+//       return {
+//         ...preve,
+//         [name]: value,
+//       };
+//     });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const { email, password } = data;
+//     console.log(email, password);
+//      fetch("http://localhost:8080/login", {
+//       method: "POST",
+//       crossDomain: true,
+//       headers: {
+//         "content-type": "application/json",
+//         Accept: "application/json",
+//         "Access-Control-Allow-Origin": "*",
+//       },
+//       body: JSON.stringify({
+//         email,
+//         password,
+//       }),
+//     })
+//     .then((res)=>res.json())
+//     .then((data)=>{console.log(data,"userlogged In");
+//       navigate('/home')
+//     })
+//     .catch(err=>console.log(err))
+//   };
+
+
+//   const handleShowPassword = () => {
+//     setShowPassword((preve) => !preve);
+//   };
+//   return (
+//     <>
+//     <Navbar/>
+//     <div
+//       className=" d-flex  justify-content-center "
+//       style={{ color: "#34495E ", paddingTop: "3rem" }}
+//     >
+//       <div
+//         style={{
+//           width: "25rem",
+//           paddingBottom: "5px",
+//           color: "#212F3D",
+//           backgroundColor: "#979A9A",
+//         }}
+//       >
+//         <h1 className="text-center text-2xl font bold"> LOGIN</h1>
+//         <form className="w-full py-3 flex flex-col">
+//           <div>
+         
+//             <input
+//               type="email"
+//               id="email"
+//               name="email"
+//               value={data.email}
+//               placeholder="Enter Your Email"
+//               onChange={handleOnChange}
+//               className="mt-1 mb-2 w-full bg-slate-200 px-4 py-1 rounded focus-within:outline-blue-300"
+//             ></input>
+//           </div>
+
+//           <div>
+//             {/* <label htmlFor="password">Password</label> */}
+//             <input
+//               type={showPassword ? "text" : "password"}
+//               id="password"
+//               name="password"
+//               placeholder="Enter Your password"
+//               onChange={handleOnChange}
+//               value={data.password}
+//               className="mt-1 mb-2 w-full bg-slate-200 px-3 py-1 rounded focus-within:outline-blue-300"
+//             ></input>
+//             <span
+//               className="flex  text-xl cursor-pointer"
+//               onClick={handleShowPassword}
+//             >
+//               {showPassword ? <BiShow /> : <BiHide />}
+//             </span>
+//           </div>
+
+//           <div className="py-3">
+//             <button
+//               type="button"
+//               className="btn btn-success "
+//               onSubmit={handleSubmit}
+//             >
+//               Login 
+//             </button>
+//           </div>
+//         </form>
+//         <p className="text-left text-sm">
+//           Don't have account ?{" "}
+//           <Link to={"/signup"} className="text-red-500 underline">
+//             Sign Up
+//           </Link>
+//         </p>
+//       </div>
+//     </div>
+//     </>
+//   );
+// };
+
+// export default Login;
+
+//import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
+//import { toast } from "react-hot-toast";
 import { BiShow, BiHide } from "react-icons/bi";
 import {Link,  useHistory} from "react-router-dom";
-//import { toast } from "react-hot-toast";
 import Navbar from "./Navbar";
-import "./Login.css"
-import TwitterIcon from '@mui/icons-material/Twitter';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-const Login = () => {
-  // const navigate = useHistory();
-  // useEffect(()={
-  //   if(localStorage.getItem('user-info')){
-  //     navigate.push('./features');
-  //   }
-  //  },[])
-  const [showPassword, setShowPassword] = useState(false);
+const Login= () => {
+  
+  const navigate=useHistory();
   const [data, setData] = useState({
+   
     email: "",
     password: "",
+    
   });
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setData((preve) => {
-      return {
-        ...preve,
-        [name]: value,
-      };
-    });
-  };
+    const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = data;
-    console.log(email, password);
-    fetch("http://localhost:8080/login", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "content-type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "user logged in");
-        if (data.status==="ok") {
-          alert("login Sucesfully");
-        }
+    // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handleShowPassword = () => {
+      setShowPassword((preve) => !preve);
+    };
+
+    // const handleShowConfirmPassword = () => {
+    //   setShowConfirmPassword((preve) => !preve);
+    // };
+
+    const handleOnChange = (e) => {
+      const { name, value } = e.target;
+      setData((preve) => {
+        return {
+          ...preve,
+          [name]: value,
+        };
       });
-  };
+    };
   
-  // const handleShowPassword = () => {
-  //   setShowPassword((preve) => !preve);
-  // };
+    console.log(process.env.REACT_APP_SERVER_DOMIN)
+    const handleSubmit= async(e)=>{
+      e.preventDefault();
+     const{email, password, } = data;
+     console.log( email, password );
+      fetch("http://localhost:8080/signup",{
+              method : "POST",
+              crossDomain:true,
+              headers : {
+                "content-type" : "application/json",
+                Accept:"application/json",
+                "Access-Control-Allow-Origin":"*"
+              },
+              body : JSON.stringify({
+               
+                email,
+                password,
+                
+              })
+            })
+            .then((res)=>res.json())
+            .then((data)=>{console.log(data,"SuccessFully Logged in");
+               if(data.status==="ok"){
+                alert("login Successfully");
+                window.localStorage.setItem("token",data.data);
+                window.location.href="./";
+               }
+            })
+            // .catch(err=>console.log(err))
+    };
+
+
   return (
+
     <>
-    <Navbar/>
-    <div className=" d-flex justify-content-center pt-5">
-      <div className="lcard" style={{height:"40rem"}}>
-        <h1 className="title"> LOGIN</h1>
-        <p className='subtitle'>Please log in using your Email and password</p>
-        
-        <form>
+   <Navbar/>
+      <div className=" d-flex  justify-content-center " style={{color : '#34495E ',  paddingTop:'3rem',}} >
+        <div style={{width:'25rem' ,paddingBottom:'5px', color:'#212F3D', backgroundColor:'#979A9A'}} >
 
-          <div className='inputs_container pt-2'>
-           <input type="email" id="email" name="email" value={data.email} placeholder="Email" onChange={handleOnChange} ></input>
+        <h2>Login</h2>
+          <form className="mb-3 mt-2 pl-2 pb-2" >
+          
+            
          
-          </div>
 
-          <div className='inputs_container pt-5 pb-4 '>
-           <input type={showPassword ? "text" : "password"} id="password" name="password" placeholder="password" onChange={handleOnChange}  value={data.password}></input>
-            {/* <span className="flex text-xl cursor-pointer" onClick={handleShowPassword}>
+           <div>
+          
+          <input
+            type={"email"}
+            id="email"
+            name="email"
+            className="mt-1 mb-2 w-full bg-slate-200 px-3 py-1 rounded focus-within:outline-blue-300"
+            value={data.email}
+            onChange={handleOnChange}
+            placeholder='Enter Your Email'
+          />
+           </div>
+            
+           
+           <div >
+           {/* <label htmlFor="password">Password</label> */}
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
+              value={data.password}
+              onChange={handleOnChange}
+              placeholder='Enter Your password'
+            />
+            <span
+              className="flex text-xl cursor-pointer"
+              onClick={handleShowPassword}
+            >
               {showPassword ? <BiShow /> : <BiHide />}
-            </span> */}
+            </span>
           </div>
 
-          <div className='px-4 pt-5' >
-            <button  type="button" style={{backgroundColor:"black", color:"white",borderColor:"white",borderWidth:"2.5px", fontWeight:"bolder",opacity:"1"}}   className="login_button" onSubmit={handleSubmit}>Login </button>
-          </div>
-        </form>
 
-
-        <p className="subtitle pb-3">
+          <button  type="button" className="btn btn-success"  onClick={handleSubmit}>Log IN</button>
+          </form>
+          <p className="text-left text-sm mt-2">
           Don't have account ?{" "}
-          <Link to={"/signup"} className="small">
-            Sign Up
+          <Link to={"/signup"} className="text-red-500 underline">
+            Sign UP
           </Link>
         </p>
-        <div className='icons'>
-          <GoogleIcon className="icon"></GoogleIcon>
-          <FacebookIcon className="icon"></FacebookIcon>
-          <TwitterIcon  className="icon"></TwitterIcon>
         </div>
       </div>
-    </div>
-
-    </>
+      </>
   );
-};
+}
 
 export default Login;
 
-// margin-bottom: '15px', padding-right: '15px',
-//     padding-left: '15px',
-//     flex: '1',
-//     max-width: '50%',
-//     flex-basis: '50%'
-// if(email && password ){
-//   const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/login`,{
-//     method : "POST",
-//     headers : {
-//       "content-type" : "application/json"
-//     },
-//     body : JSON.stringify(data)
-//   })
 
-//   const dataRes = await fetchData.json()
-//   console.log(dataRes)
 
-//   toast(dataRes.message)
-
-// if(dataRes.alert){
-//   dispatch(loginRedux(dataRes))
-//   setTimeout(() => {
-//     navigate("/")
-//   }, 1000);
-// }
-
-// console.log(userData)
-// }
-// else{
-//     alert("Please Enter required fields")
-// }

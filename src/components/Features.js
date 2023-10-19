@@ -6,79 +6,113 @@ import tractor from '../img/tractor.jpg'
 import career from '../img/career.jpg'
 import consultancy from '../img/consultancy.jpg'
 import Navbar from "./Navbar";
-import "./Home.css"
 const Features = () => {
   return (
     <>
-      <Navbar />
-
+    <Navbar/>
+    <div>
+       <div className="row">
       <div className="homepageCard">
-          <div class=" text-center homepageCard">
-            <div class="row">
-              <div class="homePageCardcol col featureCard">
-                <div className=" homePageCardBody eitherSideCard " >
-                  <img src={tractor} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" className="btn homepageCardBtn btn-primary">Go somewhere</a>
-                  </div>
+        <div class="container text-center homepageCard">
+          <div class="row">
+            <div class="homePageCardcol col">
+              <div className="card homePageCardBody eitherSideCard ">
+                <img src={weather} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Weather Report</h5>
+                  <p className="card-text">
+                   Know your area's weather conditions
+                  </p>
+                  <a href="https://www.accuweather.com/en/in/india-weather" className="btn homepageCardBtn btn-primary">
+                    Explore
+                  </a>
                 </div>
               </div>
-              <div class="homePageCardcol col featureCard">
-                <div className=" homePageCardBody  " >
-                  <img src={weather} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" className="btn homepageCardBtn btn-primary">Go somewhere</a>
-                  </div>
+            </div>
+            <div class="homePageCardcol col">
+              <div className="card homePageCardBody eitherSideCard ">
+                <img src={pesticide} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Pesticide and insecticide</h5>
+                  <p className="card-text">
+                    protect your crops from disease
+                  </p>
+                  <a href="https://play.google.com/store/apps/details?id=com.peat.GartenBank" className="btn homepageCardBtn btn-primary">
+                   Explore
+                  </a>
                 </div>
               </div>
-              <div class="homePageCardcol col featureCard">
-                <div className=" homePageCardBody eitherSideCard " >
-                  <img src={pesticide} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" className="btn homepageCardBtn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="homePageCardcol col featureCard">
-                <div className=" homePageCardBody eitherSideCard " >
-                  <img src={schemes} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" className="btn homepageCardBtn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="homePageCardcol col featureCard" >
-                <div className=" homePageCardBody eitherSideCard " >
-                  <img src={career} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" className="btn homepageCardBtn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-              <div class="homePageCardcol col featureCard">
-                <div className=" homePageCardBody eitherSideCard " >
-                  <img src={consultancy} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" className="btn homepageCardBtn btn-primary">Go somewhere</a>
-                  </div>
+            </div>
+            <div class="homePageCardcol col">
+              <div className="card homePageCardBody eitherSideCard ">
+                <img src={schemes} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Government scheme</h5>
+                  <p className="card-text">
+                   government facilities for farmer 
+                  </p>
+                  <a href="https://sbi.co.in/web/agri-rural/agriculture-banking/government-schemes" className="btn homepageCardBtn btn-primary">
+                   Explore
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    </>
+      </div>
+    </div>
+    <div className="row">
+      <div className="homepageCard">
+        <div class="container text-center homepageCard">
+          <div class="row">
+            <div class="homePageCardcol col">
+              <div className="card homePageCardBody eitherSideCard ">
+                <img src={career} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Career in Agriculture</h5>
+                  <p className="card-text">
+                   learn more about agriculture
+                  </p>
+                  <a href="https://alison.com/careers/agriculture-food-and-natural-resources/agricultural-consultant" className="btn homepageCardBtn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="homePageCardcol col">
+              <div className="card homePageCardBody eitherSideCard ">
+                <img src={consultancy} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Free consultancy</h5>
+                  <p className="card-text">
+                   clear your Doubt's;                  </p>
+                  <a href="https://www.indiamart.com/proddetail/free-consultancy-farming-plantation-25535049691.html" className="btn homepageCardBtn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="homePageCardcol col">
+              <div className="card homePageCardBody eitherSideCard ">
+                <img src={tractor} className="card-img-top" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title">Card title</h5>
+                  <p className="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                  <a href="/" className="btn homepageCardBtn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+   </>
   );
 };
 
