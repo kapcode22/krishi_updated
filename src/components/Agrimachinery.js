@@ -12,6 +12,7 @@ export const Agrimachinery = ({ addAgri }) => {
     state: "",
     pincode: "",
     machine:"",
+    amount:"",
   });
 
   const handleOnChange = (e) => {
@@ -24,34 +25,45 @@ export const Agrimachinery = ({ addAgri }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstname, lastname, email, contactNo, address, District, state, pincode,machine } = data;
-    console.log(firstname, lastname, email, contactNo, address, District, state, pincode, machine);
-    fetch("http://localhost:8080/agris", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "content-type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        firstname,
-        lastname,
-        email,
-        contactNo,
-        address,
-        District,
-        state,
-        pincode,
-        machine,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
-        window.location.href('/mach')
+    if (!data.firstname||!data.lastname||!data.email||!data.contactNo||!data.address||!data.District||!data.state||!data.pincode||!data.machine||!data.amount) {
+      alert("Enter valid details");
+    } else{
+      const { firstname, lastname, email, contactNo, address, District, state, pincode,machine,amount} = data;
+      console.log(firstname, lastname, email, contactNo, address, District, state, pincode, machine,amount);
+      fetch("http://localhost:8080/agris", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "content-type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          email,
+          contactNo,
+          address,
+          District,
+          state,
+          pincode,
+          machine,
+          amount,
+        }),
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data, "userRegister");
+          window.location.href('/mach')
+          if (data.status === "ok") {
+            alert("Registration Successful");
+          }
+          else {
+            alert("something Went Wrong");
+          }
+        });
+    }
+    
   };
   return (
     <>
@@ -145,6 +157,10 @@ export const Agrimachinery = ({ addAgri }) => {
                 <option>Crop Storage</option>
               </select>
             </div>
+            <div className="col-md-4">
+              <label htmlFor="amount" className="form-label">charge on rent /per hour</label>
+              <input type="Number" value={data.amount} className="form-control" placeholder="Enter charge" id="amount" onChange={handleOnChange} name="amount" />
+            </div>
 
             <div className="col-12">
               <button type="button" onClick={handleSubmit} className="btn btn-primary"> Apply  </button>
@@ -152,6 +168,7 @@ export const Agrimachinery = ({ addAgri }) => {
           </form>
         </div>
       </div>
+      
     </>
   );
 };

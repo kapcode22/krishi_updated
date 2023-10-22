@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 // import { JobItem } from "./JobItem";
 // import Navbar from "./Navbar"
@@ -6,6 +7,7 @@ import Navbar from "./Navbar";
 
 const Jobs = (props) => {
   const [data, setData] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8080/getwageruser", {
@@ -18,6 +20,11 @@ const Jobs = (props) => {
         setData(data.data);
       });
   }, []);
+
+  const handleAcceptClick = (item) => {
+    setSelectedUser(item);
+    setData((prevData) => prevData.filter((dataItem) => dataItem !== item));
+  };
 
   let myStyle = {
     minHeight: "70vh",
@@ -38,6 +45,7 @@ const Jobs = (props) => {
               <th>Address</th>
               <th>Contact No</th>
               <th>Machine</th>
+              <th>rate</th>
             </tr>
           </thead>
           <tbody>
@@ -49,11 +57,20 @@ const Jobs = (props) => {
                 <td>{item.contactNo}</td>
                 <td>{item.Wagers}</td>
                 <td>{item.work}</td>
-                <td><button  type="button"  className="btn btn-primary"> Accept</button></td>
+                <td>{item.amount}</td>
+                <td><button  type="button"  className="btn btn-primary" onClick={()=>handleAcceptClick(item)}> Accept</button></td>
               </tr>
             ))}
           </tbody>
         </table>
+        {selectedUser && (
+          <Link to={{
+            pathname: "/menu",
+            state: { selectedUser } // Pass the selectedUser data here
+          }}>
+            <button className="btn btn-primary">Go to Menu Page</button>
+          </Link>
+        )}
       </div>
     </>
   );

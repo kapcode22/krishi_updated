@@ -13,6 +13,7 @@ export const Wager = ({ addJob }) => {
     work: "",
     Wagers: "",
     pincode: "",
+    amount:" ",
   });
 
   const handleOnChange = (e) => {
@@ -25,8 +26,8 @@ export const Wager = ({ addJob }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work } = data;
-    console.log(firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work);
+    const { firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work,amount} = data;
+    console.log(firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work,amount);
     fetch("http://localhost:8080/wagers", {
       method: "POST",
       crossDomain: true,
@@ -46,6 +47,7 @@ export const Wager = ({ addJob }) => {
         pincode,
         Wagers,
         work,
+        amount,
       }),
     })
       .then((res) => res.json())
@@ -136,6 +138,10 @@ export const Wager = ({ addJob }) => {
                 <option>Weeding</option>
                 <option>Crop Storage</option>
               </select>
+            </div>
+            <div className="col-md-4">
+              <label htmlFor="amount" className="form-label">Charge of team per day </label>
+              <input type="Number" value={data.amount} onChange={handleOnChange} className="form-control" placeholder="Enter Charge" id="amount" name="amount" />
             </div>
             <div className="col-12">
               <button type="button" onClick={handleSubmit} className="btn btn-primary">Add Job</button>
