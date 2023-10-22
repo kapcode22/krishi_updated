@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-// import { AgriItem } from "./AgriItem";
 
-const Agris = (props) => {
+const Agris = () => {
+
   const [data, setData] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8080/getagriuser", {
       method: "GET",
     })
-    
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "agriData");
         setData(data.data);
       });
   }, []);
+
+ 
+  const handleAcceptClick = (item) => {
+    setSelectedUser(item);
+    setData((prevData) => prevData.filter((dataItem) => dataItem !== item));
+  };
+  console.log(selectedUser);
 
   let myStyle = {
     minHeight: "70vh",
@@ -36,27 +44,35 @@ const Agris = (props) => {
               <th>Address</th>
               <th>Contact No</th>
               <th>Machine</th>
+              <th>rate</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
               <tr key={index}>
                 <td>{item.firstname}  {item.lastname}</td>
-                <td>{item.address}
-                {item.District}, {item.state}</td>
+                <td>{item.address} {item.District} {item.state}</td>
                 <td>{item.contactNo}</td>
                 <td>{item.machine}</td>
-                <td><button  type="button"  className="btn btn-primary"> Accept</button></td>
+                <td>{item.amount}</td>
+                <td><button type="button" className="btn btn-primary" onClick={() => handleAcceptClick(item)} > Accept</button></td>
               </tr>
             ))}
           </tbody>
         </table>
+        {selectedUser && (
+          <Link to={{
+            pathname: "/menu",
+            state: { selectedUser } // Pass the selectedUser data here
+          }}>
+            <button className="btn btn-primary">Go to Menu Page</button>
+          </Link>
+        )}
+
       </div>
+
     </>
   );
 };
 
 export default Agris;
-
-
-

@@ -23,6 +23,9 @@ const Navbar = () => {
         <li className="nav-item">
           <a className="nav-link " href="/features" > Features </a>
         </li>
+        <li className="nav-item">
+          <a className="nav-link " href="/menu" > Menu </a>
+        </li>
 
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,8 +45,11 @@ const Navbar = () => {
             <li><a className="dropdown-item" href="/mach"> Agrimachinery availability List </a></li>
           </ul>
         </li>
+        
+
 
       </ul>
+      
       <form className="d-flex" >
         <a className="btn btn-primary mx-2" role="button" type="submit" href="/login">LogIn</a>
         <a className="btn btn-primary mx-2" role="button" type="submit" href="/signup">SignUp</a>
