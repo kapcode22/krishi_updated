@@ -11,6 +11,9 @@ import Agris from "./components/Agris";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Footer from "./components/footer";
+import Menu from "./components/Menu";
+import Profile from "./components/profile";
+import Detect from "./components/Detect"
 
 
 const fakeAuth = {
@@ -62,53 +65,22 @@ function App() {
               <Route exact path="/features">
                 <Features></Features>
               </Route>
-
-              <Route
-                exact
-                path="/job"
-                render={() => {
-                  return (
-                    <>
-                      <Jobs />
-                    </>
-                  );
-                }}
-              ></Route>
+              <Route exact path="/menu" >
+              <Menu />
+            </Route>
+            <Route exact path="/profile" >
+              <Profile/>
+            </Route>
+            <Route exact path="/detect" >
+              <Detect/>
+            </Route>
+              <Route exact path="/job" render={() => { return (<> <Jobs /> </> );}}></Route>
             </PrivateRoute>
 
-            <Route
-              exact
-              path="/wager"
-              render={() => {
-                return (
-                  <>
-                    <Wager />
-                  </>
-                );
-              }}
-            ></Route>
-            <Route
-              exact
-              path="/mach"
-              render={() => {
-                return (
-                  <>
-                    <Agris />
-                  </>
-                );
-              }}
-            ></Route>
-            <Route
-              exact
-              path="/machines"
-              render={() => {
-                return (
-                  <>
-                    <Agrimachinery />
-                  </>
-                );
-              }}
-            ></Route>
+            <Route exact path="/wager" render={() => { return ( <> <Wager/> </> ); }}></Route>
+
+            <Route exact path="/mach" render={() => { return ( <> <Agris /> </>  ); }}></Route>
+            <Route exact path="/machines" render={() => { return ( <> <Agrimachinery /> </> ); }} ></Route>
           </Switch>
           <Footer />
         </div>
