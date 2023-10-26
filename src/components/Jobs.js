@@ -16,7 +16,7 @@ const Jobs = (props) => {
     
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "agriData");
+        console.log(data, "WagerData");
         setData(data.data);
       });
   }, []);
@@ -36,7 +36,7 @@ const Jobs = (props) => {
       <Navbar />
       <div className="container" style={myStyle}>
         <h3 className="my-5" style={{ fontWeight: "bold" }}>
-          Agrimachinery List
+          Wagers List
         </h3>
         <table style={{ width: 500 }}>
           <thead>
@@ -44,7 +44,8 @@ const Jobs = (props) => {
               <th>Name</th>
               <th>Address</th>
               <th>Contact No</th>
-              <th>Machine</th>
+              <th>Wagers</th>
+              <th>Work</th>
               <th>rate</th>
             </tr>
           </thead>
@@ -55,7 +56,7 @@ const Jobs = (props) => {
                 <td>{item.address}
                 {item.District}, {item.state}</td>
                 <td>{item.contactNo}</td>
-                <td>{item.Wagers}</td>
+                <td>{item.NumberofWagers}</td>
                 <td>{item.work}</td>
                 <td>{item.amount}</td>
                 <td><button  type="button"  className="btn btn-primary" onClick={()=>handleAcceptClick(item)}> Accept</button></td>

@@ -100,7 +100,7 @@ const Features = () => {
                   <p className="card-text">
                     upload your crop image
                   </p>
-                  <a href="/Detect" className="btn homepageCardBtn btn-primary">
+                  <a href="/detect" className="btn homepageCardBtn btn-primary">
                     Explore
                   </a>
                 </div>

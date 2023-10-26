@@ -10,9 +10,9 @@ export const Wager = ({ addJob }) => {
     address: "",
     District: "",
     state: "",
-    work: "",
-    Wagers: "",
     pincode: "",
+    work: "",
+    NumberofWagers: "",
     amount:" ",
   });
 
@@ -26,37 +26,40 @@ export const Wager = ({ addJob }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work,amount} = data;
-    console.log(firstname, lastname, email, contactNo, address, District, state, pincode, Wagers, work,amount);
-    fetch("http://localhost:8080/wagers", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "content-type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        firstname,
-        lastname,
-        email,
-        contactNo,
-        address,
-        District,
-        state,
-        pincode,
-        Wagers,
-        work,
-        amount,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "userRegister");
+    const { firstname, lastname, email, contactNo, address, District, state, pincode, work,NumberofWagers, amount} = data;
+    if (!Number.isNaN(Number(NumberofWagers)) && !Number.isNaN(Number(amount))) {
+      console.log(firstname, lastname, email, contactNo, address, District, state, pincode, work, NumberofWagers, amount);
+      fetch("http://localhost:8080/wagers", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "content-type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          email,
+          contactNo,
+          address,
+          District,
+          state,
+          pincode,
+          work,
+          NumberofWagers,
+          amount,
+        }),
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data, "userRegister");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("NumberofWagers and amount must be numeric.");
+    }
   };
-
   return (
     <>
       <Navbar />
@@ -79,7 +82,7 @@ export const Wager = ({ addJob }) => {
             </div>
             <div className="col-md-6">
               <label htmlFor="contactNo" className="form-label">Contact Number</label>
-              <input type="Number" value={data.contactNo} onChange={handleOnChange} className="form-control" placeholder="Contact Number" id="contactNo" name="contactNo" />
+              <input type="text" value={data.contactNo} onChange={handleOnChange} className="form-control" placeholder="Contact Number" id="contactNo" name="contactNo" />
             </div>
             <div className="col-12">
               <label htmlFor="address" className="form-label">Address</label>
@@ -122,10 +125,6 @@ export const Wager = ({ addJob }) => {
               <input type="text" value={data.pincode} className="form-control" placeholder="Enter Valid Six-Digit code" id="inputZip" onChange={handleOnChange} name="pincode" />
             </div>
             <div className="col-md-4">
-              <label htmlFor="Wagers" className="form-label">Number of member in your team</label>
-              <input type="text" value={data.Wagers} onChange={handleOnChange} className="form-control" placeholder="wager" id="Wagers" name="Wagers" />
-            </div>
-            <div className="col-md-4">
               <label htmlFor="work" className="form-label">For Which Purpose</label>
               <select id="work" value={data.work} onChange={handleOnChange} className="form-select" name="work">
                 <option selected>Choose...</option>
@@ -140,8 +139,13 @@ export const Wager = ({ addJob }) => {
               </select>
             </div>
             <div className="col-md-4">
+              <label htmlFor="NumberofWagers" className="form-label">Number of member in your team</label>
+              <input type="text" value={data.NumberofWagers} onChange={handleOnChange} className="form-control" placeholder="wager" id="NumberofWagers" name="NumberofWagers" />
+            </div>
+          
+            <div className="col-md-4">
               <label htmlFor="amount" className="form-label">Charge of team per day </label>
-              <input type="Number" value={data.amount} onChange={handleOnChange} className="form-control" placeholder="Enter Charge" id="amount" name="amount" />
+              <input type="text" value={data.amount} onChange={handleOnChange} className="form-control" placeholder="Enter Charge" id="amount" name="amount" />
             </div>
             <div className="col-12">
               <button type="button" onClick={handleSubmit} className="btn btn-primary">Add Job</button>
