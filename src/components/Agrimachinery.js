@@ -53,14 +53,10 @@ export const Agrimachinery = ({ addAgri }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data, "userRegister");
-          window.location.href('/mach')
           if (data.status === "ok") {
             alert("Registration Successful");
           }
-          else {
-            alert("something Went Wrong");
-          }
+         
         });
     }
     

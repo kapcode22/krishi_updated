@@ -14,6 +14,7 @@ import Signup from "./components/Signup";
 import Detect from "./components/Detect";
 import Footer from "./components/footer";
 import Menu from "./components/Menu";
+import Profile from "./components/profile";
 
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
             </Route>
             <Route exact path="/Detect">
               <Detect></Detect>
+            </Route>
+            <Route exact path="/profile">
+              <Profile></Profile>
             </Route>
              
          
