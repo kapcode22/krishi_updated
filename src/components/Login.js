@@ -18,16 +18,13 @@ const Login= () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    
 
     const handleShowPassword = () => {
       setShowPassword((preve) => !preve);
     };
 
-    // const handleShowConfirmPassword = () => {
-    //   setShowConfirmPassword((preve) => !preve);
-    // };
-
+    
     const handleOnChange = (e) => {
       const { name, value } = e.target;
       setData((preve) => {
@@ -43,7 +40,7 @@ const Login= () => {
       e.preventDefault();
      const{email, password, } = data;
      console.log( email, password );
-      fetch("http://localhost:8080/signup",{
+      fetch("http://localhost:8080/login",{
               method : "POST",
               crossDomain:true,
               headers : {
@@ -62,8 +59,8 @@ const Login= () => {
             .then((data)=>{console.log(data,"SuccessFully Logged in");
                if(data.status==="ok"){
                 alert("login Successfully");
-                window.localStorage.setItem("token",data.data);
-                window.location.href="./";
+                // window.localStorage.setItem("token",data.data);
+                // window.location.href="./";
                }
             })
             // .catch(err=>console.log(err))

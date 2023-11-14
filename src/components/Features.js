@@ -23,7 +23,7 @@ const Features = () => {
                   <p className="card-text">
                    Know your area's weather conditions
                   </p>
-                  <a href="https://www.accuweather.com/en/in/india-weather" className="btn homepageCardBtn btn-primary">
+                  <a href="/weather" className="btn homepageCardBtn btn-primary">
                     Explore
                   </a>
                 </div>
