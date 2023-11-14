@@ -14,6 +14,7 @@ import Footer from "./components/footer";
 import Menu from "./components/Menu";
 import Profile from "./components/profile";
 import Detect from "./components/Detect"
+import Weather from "./components/Weather";
 
 
 const fakeAuth = {
@@ -61,7 +62,12 @@ function App() {
             <Route exact path="/signup">
               <Signup></Signup>
             </Route>
-            <PrivateRoute>
+            <Route exact path="/weather">
+              <Weather></Weather>
+            </Route>
+
+
+            {/* <PrivateRoute> */}
               <Route exact path="/features">
                 <Features></Features>
               </Route>
@@ -75,12 +81,14 @@ function App() {
               <Detect/>
             </Route>
               <Route exact path="/job" render={() => { return (<> <Jobs /> </> );}}></Route>
-            </PrivateRoute>
-
-            <Route exact path="/wager" render={() => { return ( <> <Wager/> </> ); }}></Route>
-
+              <Route exact path="/wager" render={() => { return ( <> <Wager/> </> ); }}></Route>
             <Route exact path="/mach" render={() => { return ( <> <Agris /> </>  ); }}></Route>
             <Route exact path="/machines" render={() => { return ( <> <Agrimachinery /> </> ); }} ></Route>
+            {/* </PrivateRoute> */}
+
+
+
+          
           </Switch>
           <Footer />
         </div>

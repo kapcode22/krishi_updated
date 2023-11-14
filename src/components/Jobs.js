@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 const Jobs = (props) => {
   const [data, setData] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/getwageruser", {
@@ -25,6 +26,17 @@ const Jobs = (props) => {
     setSelectedUser(item);
     setData((prevData) => prevData.filter((dataItem) => dataItem !== item));
   };
+  const filteredData = data.filter((item) => {
+    // Customize this condition based on your search requirements.
+    return (
+      // item.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      // item.lastname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.District.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.contactNo.includes(searchQuery)
+    );
+  });
 
   let myStyle = {
     minHeight: "70vh",
@@ -35,22 +47,39 @@ const Jobs = (props) => {
     <>
       <Navbar />
       <div className="container" style={myStyle}>
+      <div className="main_div">
+          <div className="search_add mt-4 d-flex justify-content-between">
+            <div className="search col-lg-4">
+              <form class="form-inline">
+                <input class="form-control " type="search" placeholder="Enter your Location" aria-label="Search" onChange={(e)=>setSearchQuery(e.target.value)} />
+                <button class="btn btn-outline-warning " type="submit" >Search</button>
+              </form>
+            </div>
+            <div >
+            <a href="/wager" className="btn  btn-warning">
+                      Apply for job
+                  </a>
+            </div>
+          </div>
+        </div>
         <h3 className="my-5" style={{ fontWeight: "bold" }}>
           Wagers List
         </h3>
-        <table style={{ width: 500 }}>
-          <thead>
+        <table class="table table-striped table-dark"style={{ width: 500 }}>
+        <thead class="thead-dark">
             <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Contact No</th>
-              <th>Wagers</th>
-              <th>Work</th>
-              <th>rate</th>
+            
+              <th scope="col">Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Contact</th>
+              <th scope="col">wagers</th>
+              <th scope="col">work</th>
+              <th scope="col">rate</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {filteredData.map((item, index) => (
               <tr key={index}>
                 <td>{item.firstname}  {item.lastname}</td>
                 <td>{item.address}

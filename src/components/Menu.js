@@ -51,7 +51,7 @@ const Menu = () => {
       .then((data) => {
         if (data.status === "ok") {
           alert("Payment Successful");
-          window.location.href = '/mach'; // Correct the redirection
+          return <div>No user data provided.</div>// Correct the redirection
         } else {
           alert("Something Went Wrong");
         }
@@ -67,7 +67,7 @@ const Menu = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <div>
         <h3>Menu Page</h3>
 
