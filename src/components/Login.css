@@ -1,4 +1,4 @@
-.ecard{
+/* .ecard{
    background-color: rgb(3, 43, 117);
     max-width: 540px;
     padding-top: 0;
@@ -13,4 +13,50 @@
     justify-content : center;
     display:flex;
     align-items: center ;
+} */
+
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
 }
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+/* CSS for Mobile Layout */
+@media only screen and (max-width: 767px) {
+    /* Adjust the logo size */
+    .col-logo {
+      text-align: center; /* Center the logo */
+      margin-bottom: 20px; /* Add some bottom margin */
+    }
+  
+    /* Center align the sign-in buttons */
+    .sign-in-buttons {
+      text-align: center;
+    }
+  }
+  
+  /* CSS for Tablet Layout */
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    /* Adjust the logo size */
+    .col-logo {
+      text-align: center; /* Center the logo */
+      margin-bottom: 20px; /* Add some bottom margin */
+    }
+  
+    /* Center align the sign-in buttons */
+    .sign-in-buttons {
+      text-align: center;
+    }
+  }
+  
